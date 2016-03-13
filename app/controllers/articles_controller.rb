@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
 		# @article = Article.new(params[:article])
 
 		@article = Article.new(article_params)
+		@article.author = current_user
 		@article.save
 
 		flash.notice = "Article #{@article.title} created!"
@@ -53,4 +54,6 @@ class ArticlesController < ApplicationController
 
 		redirect_to article_path(@article)
 	end
+
+	
 end
