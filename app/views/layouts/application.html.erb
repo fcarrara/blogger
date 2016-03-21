@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blogger</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>Blogger</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	  <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
+	  <link rel="alternate" type="application/rss+xml" title="Blogger on Rails RSS Feed" href="http://localhost:3000/feed?format=rss">
+	</head>
+	<body>
 
-	<p class="flash"><%= flash.notice %></p>
-<!-- 	<div id="container">
-		<div id="content">
- -->			<%= yield %>		
-			<hr>
-			<h6>
-				<% if logged_in? %>
-					<%= "Logged in as #{current_user.email}" %>
-					<%= link_to "(logout)", logout_path %>
-				<% else %>
-					<%= link_to "(login)", login_path %>
-				<% end %>
-			</h6>
-<!-- 		</div>
-	</div>
- -->	
-</body>
+		<% if flash[:notice] || flash[:warning] %>
+		  <div class="alert  <%= 'warning' if flash[:warning] %>" style="display: none">
+		    <%= flash[:notice] || flash[:warning] %>
+		  </div>
+		 <% end %>
+	  
+		<!-- <p class="flash"><%= flash.notice %></p> -->
+
+		<!-- Sidebar menu -->
+		<%= render "layouts/sidebar" %>
+
+		<!-- Articles -->
+		<div class="container">
+			<%= yield %>		
+		</div>
+
+		<!-- <div class="debug-console">
+			<%= debug(params) if Rails.env.development? %>
+		</div> -->
+
+	</body>
 </html>

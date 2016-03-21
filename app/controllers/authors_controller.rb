@@ -30,7 +30,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
+        format.html { redirect_to @author, notice: 'Author was successfully created' }
         format.json { render :show, status: :created, location: @author }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class AuthorsController < ApplicationController
   def update
     respond_to do |format|
       if @author.update(author_params)
-        format.html { redirect_to @author, notice: 'Author was successfully updated.' }
+        format.html { redirect_to @author, notice: 'Author was successfully updated' }
         format.json { render :show, status: :ok, location: @author }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AuthorsController < ApplicationController
   def destroy
     @author.destroy
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
+      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed' }
       format.json { head :no_content }
     end
   end
@@ -69,7 +69,7 @@ class AuthorsController < ApplicationController
       return false
     end
   end
-
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

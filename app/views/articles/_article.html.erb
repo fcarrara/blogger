@@ -1,0 +1,12 @@
+<article class="grid-item">
+	<% if article.image.exists? %>
+		<%= image_tag article.image.url (:thumb) %>
+	<% end %>
+	
+	<h3><%= link_to article.title, article_path(article) %></h3>
+	<div class="post-title">
+		<span class="user"><i class="fa fa-user"></i> by <span class="color"><%= article.author %></span></span>
+		<span class="created-time"><i class="fa fa-calendar"></i> <%= article.created_at.strftime("%d %b %Y") %></span>
+		<span class="views"><i class="fa fa-eye"></i> <%= pluralize article.view_count, "view" %></span>
+	</div>
+</article>

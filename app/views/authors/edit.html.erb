@@ -1,6 +1,8 @@
-<h1>Editing Author</h1>
+<div class="section-container">
+	<h1>Editing Author</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @author %> |
-<%= link_to 'Back', authors_path %>
+	<i class="fa fa-arrow-left"></i> <%= link_to 'Back', authors_path %> | 
+	<i class="fa fa-eye"></i> <%= link_to 'Show', @author %>
+</div>

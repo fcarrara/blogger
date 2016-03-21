@@ -1,22 +1,41 @@
-<h1><%= @article.title %></h1>
-<p>
-	Tags: 
-	<% @article.tags.each do |tag| %>
-		<%= link_to tag.name, tag_path(tag) %>
-	<% end %>
-</p>
-<p><% if @article.image.exists? %>
-		<%= image_tag @article.image.url (:medium) %>
-	<% end %>
-</p>
-<p><%= @article.body %></p>
-<h3>Comments (<%= @article.comments.size %>)</h3>
-<%= render partial: 'articles/comment', collection: @article.comments %>
-<%= render partial: 'comments/form' %>
-<%= link_to "<< Back to articles list", articles_path %>
-<% if logged_in? and is_owner? %>
-	<%= link_to "Edit", edit_article_path(@article) %>
-	<%= link_to "Delete", article_path(@article), 
+<div class="section-container">
+	<h1><%= @article.title %></h1>
+
+	<div class="post-article-title">
+		<span class="user"><i class="fa fa-user"></i> by <span class="color"><%= @article.author %></span></span>
+		<span class="created-time"><i class="fa fa-calendar"></i> <%= @article.created_at.strftime("%d %b %Y") %></span>
+		<span class="comments"><a href="#comments"><i class="fa fa-comments"></i><span class="color"> <%= pluralize @article.comments.size, "comment" %> </span></span></a>
+	</div>
+
+	<div class="article-body">
+		<p class="image"><% if @article.image.exists? %>
+				<%= image_tag @article.image.url (:medium) %>
+			<% end %>
+		</p>
+		<p><%= simple_format(@article.body) %></p>
+	</div>
+	<div class="article-footer">
+		<div class="tags">
+			Tags: 
+			<% @article.tags.each do |tag| %>
+				<%= link_to tag.name, tag_path(tag) %>
+			<% end %>
+		</div>
+		<div class="article-actions">
+			<% if logged_in? and is_owner? %>
+			<i class="fa fa-pencil"></i> <%= link_to "Edit", edit_article_path(@article) %>&nbsp;&nbsp;&nbsp;
+			<span class="color"><i class="fa fa-remove"></i></span> <%= link_to "Delete", article_path(@article), 
 				method: :delete, 
 				data: { confirm: "Are you sure?" } %>
-<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="section-container">
+	<a name="comments"></a>
+	<h3 class="comments-total">Comments (<%= @article.comments.size %>):</h3>
+	<%= render partial: 'articles/comment', collection: @article.comments %>
+	<%= render partial: 'comments/form' %>
+	<i class="fa fa-arrow-left"></i> <%= link_to "Back to articles list", articles_path %>
+</div>

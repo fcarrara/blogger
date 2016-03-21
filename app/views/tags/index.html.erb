@@ -1,13 +1,19 @@
-<h1>All tags</h1>
-<ul id="tags">
-	<% @tags.each do |tag| %>
-	<li>
-		<%= link_to tag.name, tag_path(tag) %>
-		<% if logged_in? %>
-			<%= link_to "Delete", tag_path(tag), 
-				method: :delete, 
-				data: { confirm: "Are you sure?" } %>
+<div class="section-container">
+	<h1>All tags</h1>
+	<ul class="tags">
+		<% @tags.each do |tag| %>
+		<li>
+			<% if logged_in? %>
+				<%= link_to tag_path(tag), 
+					method: :delete, 
+					data: { confirm: "Are you sure?" } do %>
+					<span class="color"><i class="fa fa-remove"></i></span>
+				<% end %>
+			<% end %>
+
+			&nbsp;&nbsp;&nbsp;<i class="fa fa-hashtag"></i> <%= link_to tag.name.capitalize, tag_path(tag) %>
+
+		</li>
 		<% end %>
-	</li>
-	<% end %>
-</ul>
+	</ul>
+</div>

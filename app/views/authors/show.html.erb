@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @author.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @author.email %>
-</p>
-
-<%= link_to 'Edit', edit_author_path(@author) %> |
-<%= link_to 'Back', authors_path %>
+<div class="section-container">
+	<div class="author-container">
+		<div class="author-image">
+			<img src="/assets/user.jpg" alt="">
+		</div>
+		<div class="author-details">
+			<h4>Username: <span class="color"><%= @author.username %></span></h4>
+			<p>
+			  <%= @author.email %>
+			</p>
+		</div>
+	</div>
+	
+	<i class="fa fa-arrow-left"></i> <%= link_to 'Back', authors_path %> | 
+	<i class="fa fa-pencil"></i> <%= link_to 'Edit', edit_author_path(@author) %>
+</div>
